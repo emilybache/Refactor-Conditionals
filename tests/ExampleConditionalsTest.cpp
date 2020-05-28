@@ -15,12 +15,13 @@ TEST_CASE("DeMorgan") {
 }
 
 TEST_CASE("Normalize") {
-    REQUIRE(normalize2("hello", "world") == 5);
-    REQUIRE(normalize2("foo", "world") == 0);
-    REQUIRE(normalize2("foo", "bar") == 1);
-    REQUIRE(normalize2("bar", "world") == 2);
-    REQUIRE(normalize2("hello", "bar") == 3);
-    REQUIRE(normalize2("hello", "foo") == 4);
+    REQUIRE(normalize("hello", "world") == 5);
+    REQUIRE(normalize("bar", "foo") == 6);
+    REQUIRE(normalize("foo", "world") == 0);
+    REQUIRE(normalize("foo", "bar") == 1);
+    REQUIRE(normalize("bar", "world") == 2);
+    REQUIRE(normalize("hello", "bar") == 3);
+    REQUIRE(normalize("hello", "foo") == 4);
 }
 
 TEST_CASE("split") {
