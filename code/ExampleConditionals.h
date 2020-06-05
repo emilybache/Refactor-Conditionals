@@ -80,4 +80,12 @@ static int redundant_else(int x) {
     return 0;
 }
 
+static int invert(int x) {
+    if (x != 3) {
+        return 3;
+    } else {
+        return 4;
+    }
+}
+
 #endif //EXAMPLECONDITIONALS_H

@@ -54,3 +54,8 @@ TEST_CASE("redundant else") {
     REQUIRE(redundant_else(40) == 0);
 }
 
+TEST_CASE("invert") {
+    REQUIRE(invert(3) == 4);
+    REQUIRE(invert(4) == 3);
+}
+
