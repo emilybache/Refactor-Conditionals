@@ -26,15 +26,7 @@ public class ExampleConditionals {
 		return !(x != 5 && x != 7);
 	}
 
-	static int split(int x, int y) {
-		if (x == 3 && y == 4) {
-			return x + y;
-		} else {
-			return 0;
-		}
-	}
-
-	static int join(int x, int y) {
+	static int join_AND(int x, int y) {
 		if (x == 3) {
 			if (y == 4) {
 				return x + y;
@@ -43,14 +35,29 @@ public class ExampleConditionals {
 		return 0;
 	}
 
-	static int split_statements(int x, int y) {
-		int result = 0;
-		int factor = 1;
-		if (x > 3) {
-			result += y * 3;
-			factor = x;
+	static int split_AND(int x, int y) {
+		if (x == 3 && y == 4) {
+			return x + y;
+		} else {
+			return 0;
 		}
-		return result * factor;
+	}
+
+	static boolean join_OR(int x, int y) {
+		if (x >= 0) {
+			return true;
+		}
+		if (y <= 3) {
+			return true;
+		}
+		return y == 10;
+	}
+
+	static boolean split_OR(int x, int y) {
+		if (x >= 0 || y <= 3 || y == 10) {
+			return true;
+		}
+		return false;
 	}
 
 	static int join_statements(int x, int y) {
@@ -61,6 +68,16 @@ public class ExampleConditionals {
 		}
 		if (x > 3) {
 			result += y * 3;
+		}
+		return result * factor;
+	}
+
+	static int split_statements(int x, int y) {
+		int result = 0;
+		int factor = 1;
+		if (x > 3) {
+			result += y * 3;
+			factor = x;
 		}
 		return result * factor;
 	}
