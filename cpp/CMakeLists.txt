@@ -1,17 +1,14 @@
-cmake_minimum_required(VERSION 3.8)
-project(RefactorConditional)
+cmake_minimum_required(VERSION 3.20)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+project(RefactorConditionals VERSION 1.0
+        LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-
-set(CMAKE_VERBOSE_MAKEFILE off)
+set(CMAKE_CXX_STANDARD 20)
 
 # uncomment these lines to enable coverage measurements using gcov
-#set(CMAKE_C_FLAGS "--coverage")
-set(CMAKE_CXX_FLAGS "--coverage")
+#set(CMAKE_CXX_FLAGS "--coverage")
 
 enable_testing()
-add_subdirectory(code)
-add_subdirectory(lib)
-add_subdirectory(tests)
-
+add_subdirectory(src)
+add_subdirectory(test-catch2)
 

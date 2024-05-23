@@ -1,9 +1,6 @@
-#define APPROVAL_TESTS_HIDE_DEPRECATED_CODE 1
-
 #include "ApprovalTests.hpp"
 #include "catch2/catch.hpp"
 
-using namespace ApprovalTests;
 
 #include "ExampleConditionals.h"
 
@@ -58,4 +55,5 @@ TEST_CASE("invert") {
     REQUIRE(invert(3) == 4);
     REQUIRE(invert(4) == 3);
 }
+
 
