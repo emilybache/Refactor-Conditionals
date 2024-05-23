@@ -1,3 +1,5 @@
+#include <ConditionalClass.h>
+
 #include "ApprovalTests.hpp"
 #include "catch2/catch.hpp"
 
@@ -54,6 +56,21 @@ TEST_CASE("redundant else") {
 TEST_CASE("invert") {
     REQUIRE(invert(3) == 4);
     REQUIRE(invert(4) == 3);
+}
+
+TEST_CASE("ConditionalClass::LiftUpConditional should give correct values", "[ConditionalClass]") {
+    SECTION("A true B true") {
+        REQUIRE(ConditionalClass::LiftUpConditional(true, true) == "ATrueBTrue");
+    }
+    SECTION("A true B false") {
+        REQUIRE(ConditionalClass::LiftUpConditional(true, false) == "ATrueBFalse");
+    }
+    SECTION("A false B true") {
+        REQUIRE(ConditionalClass::LiftUpConditional(false, true) == "AFalseBTrue");
+    }
+    SECTION("A false B false") {
+        REQUIRE(ConditionalClass::LiftUpConditional(false, false) == "AFalseBFalse");
+    }
 }
 
 
