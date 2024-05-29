@@ -13,22 +13,20 @@ private:
     static std::string AFalseBFalse() { return "AFalseBFalse"; }
 
 public:
-    static std::string lift_up_b(bool a, bool b) {
-        std::string result;
-        if (b) {
-            if (a) {
-                result = ATrueBTrue();
+    static std::string LiftUpConditional(bool a, bool b) {
+        if (a) {
+            if (b) {
+                return ATrueBTrue();
             } else {
-                result = AFalseBTrue();
+                return ATrueBFalse();
             }
         } else {
-            if (a) {
-                result = ATrueBFalse();
+            if (b) {
+                return AFalseBTrue();
             } else {
-                result = AFalseBFalse();
+                return AFalseBFalse();
             }
         }
-        return result;
     }
 
     static int hello_world(std::string s1, std::string s2) {
