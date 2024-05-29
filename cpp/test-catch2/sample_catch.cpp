@@ -5,22 +5,13 @@
 
 
 #include "ExampleConditionals.h"
+#include "ConditionalClass.h"
 
 TEST_CASE("DeMorgan") {
 
     REQUIRE_FALSE(deMorgan(1));
     REQUIRE(deMorgan(5));
     REQUIRE(deMorgan(7));
-}
-
-TEST_CASE("Normalize") {
-    REQUIRE(normalize("hello", "world") == 5);
-    REQUIRE(normalize("bar", "foo") == 6);
-    REQUIRE(normalize("foo", "world") == 0);
-    REQUIRE(normalize("foo", "bar") == 1);
-    REQUIRE(normalize("bar", "world") == 2);
-    REQUIRE(normalize("hello", "bar") == 3);
-    REQUIRE(normalize("hello", "foo") == 4);
 }
 
 TEST_CASE("split") {
@@ -58,19 +49,28 @@ TEST_CASE("invert") {
     REQUIRE(invert(4) == 3);
 }
 
-TEST_CASE("ConditionalClass::LiftUpConditional should give correct values", "[ConditionalClass]") {
+TEST_CASE("ConditionalClass::lift_up_b should give correct values", "[ConditionalClass]") {
     SECTION("A true B true") {
-        REQUIRE(ConditionalClass::LiftUpConditional(true, true) == "ATrueBTrue");
+        REQUIRE(ConditionalClass::lift_up_b(true, true) == "ATrueBTrue");
     }
     SECTION("A true B false") {
-        REQUIRE(ConditionalClass::LiftUpConditional(true, false) == "ATrueBFalse");
+        REQUIRE(ConditionalClass::lift_up_b(true, false) == "ATrueBFalse");
     }
     SECTION("A false B true") {
-        REQUIRE(ConditionalClass::LiftUpConditional(false, true) == "AFalseBTrue");
+        REQUIRE(ConditionalClass::lift_up_b(false, true) == "AFalseBTrue");
     }
     SECTION("A false B false") {
-        REQUIRE(ConditionalClass::LiftUpConditional(false, false) == "AFalseBFalse");
+        REQUIRE(ConditionalClass::lift_up_b(false, false) == "AFalseBFalse");
     }
 }
 
+TEST_CASE("Normalize hello world") {
+  CHECK(ConditionalClass::hello_world("hello", "world") == 5);
+  CHECK(ConditionalClass::hello_world("bar", "foo") == 6);
+  CHECK(ConditionalClass::hello_world("foo", "world") == 0);
+  CHECK(ConditionalClass::hello_world("foo", "bar") == 1);
+  CHECK(ConditionalClass::hello_world("bar", "world") == 2);
+  CHECK(ConditionalClass::hello_world("hello", "bar") == 3);
+  CHECK(ConditionalClass::hello_world("hello", "foo") == 4);
+}
 
