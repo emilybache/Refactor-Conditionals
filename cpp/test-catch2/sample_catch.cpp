@@ -49,18 +49,18 @@ TEST_CASE("invert") {
     REQUIRE(invert(4) == 3);
 }
 
-TEST_CASE("ConditionalClass::lift_up_b should give correct values", "[ConditionalClass]") {
+TEST_CASE("ConditionalClass::LiftUpConditional should give correct values", "[ConditionalClass]") {
     SECTION("A true B true") {
-        REQUIRE(ConditionalClass::lift_up_b(true, true) == "ATrueBTrue");
+        REQUIRE(ConditionalClass::LiftUpConditional(true, true) == "ATrueBTrue");
     }
     SECTION("A true B false") {
-        REQUIRE(ConditionalClass::lift_up_b(true, false) == "ATrueBFalse");
+        REQUIRE(ConditionalClass::LiftUpConditional(true, false) == "ATrueBFalse");
     }
     SECTION("A false B true") {
-        REQUIRE(ConditionalClass::lift_up_b(false, true) == "AFalseBTrue");
+        REQUIRE(ConditionalClass::LiftUpConditional(false, true) == "AFalseBTrue");
     }
     SECTION("A false B false") {
-        REQUIRE(ConditionalClass::lift_up_b(false, false) == "AFalseBFalse");
+        REQUIRE(ConditionalClass::LiftUpConditional(false, false) == "AFalseBFalse");
     }
 }
 

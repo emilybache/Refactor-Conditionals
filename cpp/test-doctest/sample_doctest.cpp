@@ -48,18 +48,18 @@ TEST_CASE("invert") {
 }
 
 
-TEST_CASE("ConditionalClass::lift_up_b should give correct values") {
+TEST_CASE("ConditionalClass::LiftUpConditional should give correct values") {
     SUBCASE("A true B true") {
-        CHECK_EQ(ConditionalClass::lift_up_b(true, true), "ATrueBTrue");
+        CHECK_EQ(ConditionalClass::LiftUpConditional(true, true), "ATrueBTrue");
     }
     SUBCASE("A true B false") {
-        CHECK_EQ(ConditionalClass::lift_up_b(true, false), "ATrueBFalse");
+        CHECK_EQ(ConditionalClass::LiftUpConditional(true, false), "ATrueBFalse");
     }
     SUBCASE("A false B true") {
-        CHECK_EQ(ConditionalClass::lift_up_b(false, true), "AFalseBTrue");
+        CHECK_EQ(ConditionalClass::LiftUpConditional(false, true), "AFalseBTrue");
     }
     SUBCASE("A false B false") {
-        CHECK_EQ(ConditionalClass::lift_up_b(false, false), "AFalseBFalse");
+        CHECK_EQ(ConditionalClass::LiftUpConditional(false, false), "AFalseBFalse");
     }
 }
 
