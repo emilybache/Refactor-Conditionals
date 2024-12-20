@@ -6,6 +6,74 @@ namespace Sample;
 
 class ExampleConditionals {
 
+    public static function deMorgan($x): bool
+    {
+        return !($x != 5 && $x != 7);
+        // (x == 5 || x == 7) is the same as (x != 5 && x != 7)
+    }
+
+    public static function splitAnd($x, $y)
+    {
+        if ($x == 3 && $y == 4) {
+            return $x + $y;
+        } else {
+            return 0;
+        }
+    }
+
+    public static function joinAnd($x, $y)
+    {
+        if ($x == 3) {
+            if ($y == 4) {
+                return $x + $y;
+            }
+        }
+        return 0;
+    }
+
+    public static function joinOr($x, $y): bool
+    {
+        if ($x >= 0) {
+            return true;
+        }
+        if ($y <= 3) {
+            return true;
+        }
+        return $y == 10;
+    }
+
+    public static function splitOr($x, $y): bool
+    {
+        if ($x >= 0 || $y <= 3 || $y == 10) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function splitStatements($x, $y): float|int
+    {
+        $result = 0;
+        $factor = 1;
+        if ($x > 3) {
+            $result += $y * 3;
+            $factor = $x;
+        }
+        return $result * $factor;
+    }
+
+    public static function joinStatements($x, $y): float|int
+    {
+        $result = 0;
+        $factor = 1;
+        if ($x > 3) {
+            $factor = $x;
+        }
+        if ($x > 3) {
+            $result += $y * 3;
+        }
+        return $result * $factor;
+    }
+
     public static function invert($x): int
     {
         if ($x != 3) {
@@ -28,72 +96,45 @@ class ExampleConditionals {
         return 0;
     }
 
-    public static function deMorgan($x): bool
-    {
-        return !($x != 5 && $x != 7);
-    }
 
-    public static function joinAnd($x, $y) {
-        if ($x == 3) {
-            if ($y == 4) {
-                return $x + $y;
+    public static function lift_up_simple($a, $b): string
+    {
+        if ($a) {
+            if ($b) {
+                return self::a_true_b_true();
+            } else {
+                return self::a_true_b_false();
+            }
+        } else {
+            if ($b) {
+                return self::a_false_b_true();
+            } else {
+                return self::a_false_b_false();
             }
         }
-        return 0;
     }
 
-    public static function splitAnd($x, $y) {
-        if ($x == 3 && $y == 4) {
-            return $x + $y;
-        } else {
-            return 0;
-        }
-    }
-
-    public static function joinOr($x, $y): bool
+    static function a_false_b_false(): string
     {
-        if ($x >= 0) {
-            return true;
-        }
-        if ($y <= 3) {
-            return true;
-        }
-        return $y == 10;
+        return "AFalseBFalse";
     }
 
-    public static function splitOr($x, $y): bool
+    static function a_false_b_true(): string
     {
-        if ($x >= 0 || $y <= 3 || $y == 10) {
-            return true;
-        }
-        return false;
+        return "AFalseBTrue";
     }
 
-    public static function joinStatements($x, $y): float|int
+    static function a_true_b_false(): string
     {
-        $result = 0;
-        $factor = 1;
-        if ($x > 3) {
-            $factor = $x;
-        }
-        if ($x > 3) {
-            $result += $y * 3;
-        }
-        return $result * $factor;
+        return "ATrueBFalse";
     }
 
-    public static function splitStatements($x, $y): float|int
+    static function a_true_b_true(): string
     {
-        $result = 0;
-        $factor = 1;
-        if ($x > 3) {
-            $result += $y * 3;
-            $factor = $x;
-        }
-        return $result * $factor;
+        return "ATrueBTrue";
     }
 
-    public static function normalize($s1, $s2): int
+    public static function lift_up_hello($s1, $s2): int
     {
         if ($s1 !== "hello") {
             if ($s2 !== "world") {
@@ -116,4 +157,5 @@ class ExampleConditionals {
     }
 
 }
+
 ?>

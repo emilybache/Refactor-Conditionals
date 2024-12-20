@@ -169,14 +169,30 @@ class ExampleConditionalsTest extends TestCase {
         ];
     }
 
-    /**
-     * @dataProvider normalizeProvider
-     */
-    public function testNormalize($s1, $s2, $expected) {
-        $this->assertEquals($expected, ExampleConditionals::normalize($s1, $s2));
+    public function test_A_True_B_True() {
+        $this->assertEquals("ATrueBTrue", ExampleConditionals::lift_up_simple(true, true));
     }
 
-    public function normalizeProvider() {
+    public function test_A_True_B_False() {
+        $this->assertEquals("ATrueBFalse", ExampleConditionals::lift_up_simple(true, false));
+    }
+
+    public function test_A_False_B_True() {
+        $this->assertEquals("AFalseBTrue", ExampleConditionals::lift_up_simple(false, true));
+    }
+
+    public function test_A_False_B_False() {
+        $this->assertEquals("AFalseBFalse", ExampleConditionals::lift_up_simple(false, false));
+    }
+
+    /**
+     * @dataProvider liftUpHelloProvider
+     */
+    public function testLiftUpSimple($s1, $s2, $expected) {
+        $this->assertEquals($expected, ExampleConditionals::lift_up_hello($s1, $s2));
+    }
+
+    public function liftUpHelloProvider() {
         return [
             ["foo", "world", 0],
             ["foo", "bar", 1],
