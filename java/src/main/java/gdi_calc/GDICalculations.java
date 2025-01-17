@@ -1,4 +1,4 @@
-package realistic;
+package gdi_calc;
 
 import java.util.logging.Logger;
 

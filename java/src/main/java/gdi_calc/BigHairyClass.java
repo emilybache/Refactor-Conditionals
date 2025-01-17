@@ -1,4 +1,4 @@
-package realistic;
+package gdi_calc;
 
 import java.util.Random; /**
  * hard to construct - cannot be used in a unit test
