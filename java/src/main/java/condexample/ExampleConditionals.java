@@ -2,7 +2,7 @@ package condexample;
 
 public class ExampleConditionals {
 
-    static int invert_not(int x) {
+    static int invert_negative(int x) {
         if (x != 3) {
             return 3;
         } else {
@@ -10,11 +10,11 @@ public class ExampleConditionals {
         }
     }
 
-    static int invert(int x) {
-        if (x != 3) {
-            return 3;
-        } else {
+    static int invert_positive(int x) {
+        if (x == 3) {
             return 4;
+        } else {
+            return 3;
         }
     }
 
@@ -110,7 +110,7 @@ public class ExampleConditionals {
     public static int y;
     public static int z;
 
-    static void no_guard_clause_simple(int x) {
+    static void introduce_guard_clause_simple(int x) {
         if (x == 3) {
             ExampleConditionals.y = 4;
             // imagine lots more lines of code here including if statements
@@ -118,7 +118,7 @@ public class ExampleConditionals {
         }
     }
 
-    static void with_guard_clause_simple(int x) {
+    static void remove_guard_clause_simple(int x) {
         if (x != 3) {
             return;
         }
@@ -127,7 +127,7 @@ public class ExampleConditionals {
         ExampleConditionals.z = x;
     }
 
-    static int no_guard_clause_single_return(int x) {
+    static int introduce_guard_clause_single_return(int x) {
         int result = 0;
         if (x != 3) {
             ExampleConditionals.y = 4;
@@ -138,7 +138,7 @@ public class ExampleConditionals {
         return result;
     }
 
-    static int with_guard_clause_single_return(int x) {
+    static int remove_guard_clause_single_return(int x) {
         if (x == 3) {
             return 0;
         }
@@ -149,20 +149,7 @@ public class ExampleConditionals {
         return 4*x + y;
     }
 
-    static int no_guard_clause_multi_return(int x) {
-        int result = 0;
-        if (x == 3) {
-            return result;
-        }
-        ExampleConditionals.y = 4;
-        // imagine lots more lines of code here including if statements
-        ExampleConditionals.z = x;
-        result = 4 * x + y;
-
-        return result;
-    }
-
-    static int with_guard_clause_multi_return(int x) {
+    static int introduce_guard_clause_multi_return(int x) {
         if (x != 3) {
             ExampleConditionals.y = 4;
             // imagine lots more lines of code here including if statements
@@ -171,6 +158,17 @@ public class ExampleConditionals {
         } else {
             return 0;
         }
+    }
+
+    static int remove_guard_clause_multi_return(int x) {
+        if (x == 3) {
+            return 0;
+        }
+        ExampleConditionals.y = 4;
+        // imagine lots more lines of code here including if statements
+        ExampleConditionals.z = x;
+
+        return 4 * x + y;
     }
 
     public static String liftUpSimple(boolean a, boolean b) {

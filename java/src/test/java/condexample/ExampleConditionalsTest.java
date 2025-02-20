@@ -15,9 +15,9 @@ class ExampleConditionalsTest {
             "4, 3",
             "0, 9"
     })
-    void no_guard_clause_simple(int expected, int input) {
+    void introduce_guard_clause_simple(int expected, int input) {
         ExampleConditionals.y = 0;
-        ExampleConditionals.no_guard_clause_simple(input);
+        ExampleConditionals.introduce_guard_clause_simple(input);
         assertEquals(expected, ExampleConditionals.y);
     }
 
@@ -26,9 +26,9 @@ class ExampleConditionalsTest {
             "4, 3",
             "0, 9"
     })
-    void with_guard_clause_simple(int expected, int input) {
+    void remove_guard_clause_simple(int expected, int input) {
         ExampleConditionals.y = 0;
-        ExampleConditionals.with_guard_clause_simple(input);
+        ExampleConditionals.remove_guard_clause_simple(input);
         assertEquals(expected, ExampleConditionals.y);
     }
 
@@ -37,9 +37,9 @@ class ExampleConditionalsTest {
             "0, 3",
             "40, 9"
     })
-    void no_guard_clause_single_return(int expected, int input) {
+    void introduce_guard_clause_single_return(int expected, int input) {
         ExampleConditionals.y = 0;
-        var result = ExampleConditionals.no_guard_clause_single_return(input);
+        var result = ExampleConditionals.introduce_guard_clause_single_return(input);
         assertEquals(expected, result);
     }
 
@@ -48,9 +48,9 @@ class ExampleConditionalsTest {
             "0, 3",
             "40, 9"
     })
-    void with_guard_clause_single_return(int expected, int input) {
+    void remove_guard_clause_single_return(int expected, int input) {
         ExampleConditionals.y = 0;
-        var result = ExampleConditionals.with_guard_clause_single_return(input);
+        var result = ExampleConditionals.remove_guard_clause_single_return(input);
         assertEquals(expected, result);
     }
 
@@ -59,9 +59,9 @@ class ExampleConditionalsTest {
             "0, 3",
             "40, 9"
     })
-    void no_guard_clause_multi_return(int expected, int input) {
+    void remove_guard_clause_multi_return(int expected, int input) {
         ExampleConditionals.y = 0;
-        var result = ExampleConditionals.no_guard_clause_multi_return(input);
+        var result = ExampleConditionals.remove_guard_clause_multi_return(input);
         assertEquals(expected, result);
     }
 
@@ -70,9 +70,9 @@ class ExampleConditionalsTest {
             "0, 3",
             "40, 9"
     })
-    void with_guard_clause_multi_return(int expected, int input) {
+    void introduce_guard_clause_multi_return(int expected, int input) {
         ExampleConditionals.y = 0;
-        var result = ExampleConditionals.with_guard_clause_multi_return(input);
+        var result = ExampleConditionals.introduce_guard_clause_multi_return(input);
         assertEquals(expected, result);
     }
 
@@ -83,8 +83,8 @@ class ExampleConditionalsTest {
             "3, 1",
             "3, 4"
     })
-    void invert_not(int expected, int actual) {
-        assertEquals(expected, ExampleConditionals.invert_not(actual));
+    void invert_negative(int expected, int actual) {
+        assertEquals(expected, ExampleConditionals.invert_negative(actual));
     }
 
     @ParameterizedTest
@@ -94,8 +94,8 @@ class ExampleConditionalsTest {
             "3, 1",
             "3, 4"
     })
-    void invert(int expected, int actual) {
-        assertEquals(expected, ExampleConditionals.invert(actual));
+    void invert_positive(int expected, int actual) {
+        assertEquals(expected, ExampleConditionals.invert_positive(actual));
     }
 
     @ParameterizedTest
