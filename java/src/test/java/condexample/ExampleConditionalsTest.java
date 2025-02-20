@@ -23,6 +23,17 @@ class ExampleConditionalsTest {
 
     @ParameterizedTest
     @CsvSource({
+            "3, 3",
+            "40, 9"
+    })
+    void guard_clause_multi_returns(int expected, int input) {
+        ExampleConditionals.y = 0;
+        var result = ExampleConditionals.guard_clause_multi_returns(input);
+        assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
             "4, 3",
             "3, 5",
             "3, 1",

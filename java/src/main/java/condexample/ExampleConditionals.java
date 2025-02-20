@@ -97,6 +97,19 @@ public class ExampleConditionals {
         }
     }
 
+    static int guard_clause_multi_returns(int x) {
+        int result = 0;
+        if (x == 3) {
+            result = 3;
+        } else {
+            ExampleConditionals.y = 4;
+            // imagine lots more lines of code here including if statements
+            ExampleConditionals.z = x;
+            result = 4*x + y;
+        }
+        return result;
+    }
+
     public static String liftUpSimple(boolean a, boolean b) {
         if (a) {
             if (b) {
