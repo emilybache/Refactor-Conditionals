@@ -15,9 +15,9 @@ class ExampleConditionalsTest {
             "4, 3",
             "0, 9"
     })
-    void introduce_guard_clause_simple(int expected, int input) {
+    void introduce_guard_clause_void(int expected, int input) {
         ExampleConditionals.y = 0;
-        ExampleConditionals.introduce_guard_clause_simple(input);
+        ExampleConditionals.introduce_guard_clause_void(input);
         assertEquals(expected, ExampleConditionals.y);
     }
 
@@ -26,9 +26,9 @@ class ExampleConditionalsTest {
             "4, 3",
             "0, 9"
     })
-    void remove_guard_clause_simple(int expected, int input) {
+    void remove_guard_clause_void(int expected, int input) {
         ExampleConditionals.y = 0;
-        ExampleConditionals.remove_guard_clause_simple(input);
+        ExampleConditionals.remove_guard_clause_void(input);
         assertEquals(expected, ExampleConditionals.y);
     }
 
