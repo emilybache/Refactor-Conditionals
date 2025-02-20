@@ -89,7 +89,7 @@ public class ExampleConditionals {
     public static int y;
     public static int z;
 
-    static void guard_clause(int x) {
+    static void guard_clause_simple(int x) {
         if (x == 3) {
             ExampleConditionals.y = 4;
             // imagine lots more lines of code here including if statements

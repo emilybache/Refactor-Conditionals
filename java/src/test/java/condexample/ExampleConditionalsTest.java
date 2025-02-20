@@ -17,7 +17,7 @@ class ExampleConditionalsTest {
     })
     void guard_clause(int expected, int input) {
         ExampleConditionals.y = 0;
-        ExampleConditionals.guard_clause(input);
+        ExampleConditionals.guard_clause_simple(input);
         assertEquals(expected, ExampleConditionals.y);
     }
 
