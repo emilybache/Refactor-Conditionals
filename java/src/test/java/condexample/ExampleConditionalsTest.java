@@ -15,9 +15,20 @@ class ExampleConditionalsTest {
             "4, 3",
             "0, 9"
     })
-    void guard_clause(int expected, int input) {
+    void no_guard_clause_simple(int expected, int input) {
         ExampleConditionals.y = 0;
-        ExampleConditionals.guard_clause_simple(input);
+        ExampleConditionals.no_guard_clause_simple(input);
+        assertEquals(expected, ExampleConditionals.y);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "4, 3",
+            "0, 9"
+    })
+    void with_guard_clause_simple(int expected, int input) {
+        ExampleConditionals.y = 0;
+        ExampleConditionals.with_guard_clause_simple(input);
         assertEquals(expected, ExampleConditionals.y);
     }
 
@@ -26,9 +37,9 @@ class ExampleConditionalsTest {
             "0, 3",
             "40, 9"
     })
-    void guard_clause_single_return(int expected, int input) {
+    void no_guard_clause_single_return(int expected, int input) {
         ExampleConditionals.y = 0;
-        var result = ExampleConditionals.guard_clause_single_return(input);
+        var result = ExampleConditionals.no_guard_clause_single_return(input);
         assertEquals(expected, result);
     }
 
@@ -37,10 +48,43 @@ class ExampleConditionalsTest {
             "0, 3",
             "40, 9"
     })
-    void guard_clause_multi_return(int expected, int input) {
+    void with_guard_clause_single_return(int expected, int input) {
         ExampleConditionals.y = 0;
-        var result = ExampleConditionals.guard_clause_multi_return(input);
+        var result = ExampleConditionals.with_guard_clause_single_return(input);
         assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 3",
+            "40, 9"
+    })
+    void no_guard_clause_multi_return(int expected, int input) {
+        ExampleConditionals.y = 0;
+        var result = ExampleConditionals.no_guard_clause_multi_return(input);
+        assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 3",
+            "40, 9"
+    })
+    void with_guard_clause_multi_return(int expected, int input) {
+        ExampleConditionals.y = 0;
+        var result = ExampleConditionals.with_guard_clause_multi_return(input);
+        assertEquals(expected, result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "4, 3",
+            "3, 5",
+            "3, 1",
+            "3, 4"
+    })
+    void invert_not(int expected, int actual) {
+        assertEquals(expected, ExampleConditionals.invert_not(actual));
     }
 
     @ParameterizedTest
@@ -61,8 +105,19 @@ class ExampleConditionalsTest {
             "29, 30",
             "30, 0"
     })
-    void join_statements(int x, int expected) {
+    void redundant_else(int x, int expected) {
         assertEquals(expected, ExampleConditionals.redundant_else(x));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "2, 1",
+            "7, 10",
+            "29, 30",
+            "30, 0"
+    })
+    void missing_else(int x, int expected) {
+        assertEquals(expected, ExampleConditionals.missing_else(x));
     }
 
     @ParameterizedTest
