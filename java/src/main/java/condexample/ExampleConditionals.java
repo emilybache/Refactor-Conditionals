@@ -97,11 +97,9 @@ public class ExampleConditionals {
         }
     }
 
-    static int guard_clause_multi_returns(int x) {
+    static int guard_clause_single_return(int x) {
         int result = 0;
-        if (x == 3) {
-            result = 3;
-        } else {
+        if (x != 3) {
             ExampleConditionals.y = 4;
             // imagine lots more lines of code here including if statements
             ExampleConditionals.z = x;
