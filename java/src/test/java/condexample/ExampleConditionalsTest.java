@@ -13,6 +13,17 @@ class ExampleConditionalsTest {
     @ParameterizedTest
     @CsvSource({
             "4, 3",
+            "0, 9"
+    })
+    void guard_clause(int expected, int input) {
+        ExampleConditionals.y = 0;
+        ExampleConditionals.guard_clause(input);
+        assertEquals(expected, ExampleConditionals.y);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "4, 3",
             "3, 5",
             "3, 1",
             "3, 4"
@@ -34,14 +45,26 @@ class ExampleConditionalsTest {
 
     @ParameterizedTest
     @ValueSource(ints = {5, 7})
-    void deMorgan_true(int valid) {
-        Assertions.assertTrue(ExampleConditionals.deMorgan(valid));
+    void deMorganAnd_true(int valid) {
+        Assertions.assertTrue(ExampleConditionals.deMorganAnd(valid));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {4, 8})
-    void deMorgan_false(int invalid) {
-        Assertions.assertFalse(ExampleConditionals.deMorgan(invalid));
+    void deMorganAnd_false(int invalid) {
+        Assertions.assertFalse(ExampleConditionals.deMorganAnd(invalid));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {5, 7})
+    void deMorganOr_true(int valid) {
+        Assertions.assertTrue(ExampleConditionals.deMorganOr(valid));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 8})
+    void deMorganOr_false(int invalid) {
+        Assertions.assertFalse(ExampleConditionals.deMorganOr(invalid));
     }
 
     @ParameterizedTest

@@ -22,8 +22,11 @@ public class ExampleConditionals {
         return 0;
     }
 
-    static boolean deMorgan(int x) {
+    static boolean deMorganAnd(int x) {
         return !(x != 5 && x != 7);
+    }
+    static boolean deMorganOr(int x) {
+        return x == 5 || x == 7;
     }
 
     static int join_AND(int x, int y) {
@@ -80,6 +83,18 @@ public class ExampleConditionals {
             factor = x;
         }
         return result * factor;
+    }
+
+
+    public static int y;
+    public static int z;
+
+    static void guard_clause(int x) {
+        if (x == 3) {
+            ExampleConditionals.y = 4;
+            // imagine lots more lines of code here including if statements
+            ExampleConditionals.z = x;
+        }
     }
 
     public static String liftUpSimple(boolean a, boolean b) {
