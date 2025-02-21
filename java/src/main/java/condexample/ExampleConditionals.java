@@ -46,6 +46,7 @@ public class ExampleConditionals {
     static boolean deMorganAnd(int x) {
         return !(x != 5 && x != 7);
     }
+
     static boolean deMorganOr(int x) {
         return x == 5 || x == 7;
     }
@@ -111,14 +112,6 @@ public class ExampleConditionals {
     public static int z;
 
     static void introduce_guard_clause_void(int x) {
-        if (x == 3) {
-            ExampleConditionals.y = 4;
-            // imagine lots more lines of code here including if statements
-            ExampleConditionals.z = x;
-        }
-    }
-
-    static void remove_guard_clause_void(int x) {
         if (x != 3) {
             return;
         }
@@ -127,35 +120,45 @@ public class ExampleConditionals {
         ExampleConditionals.z = x;
     }
 
-
-    static int introduce_guard_clause_multi_return(int x) {
-        if (x != 3) {
+    static void remove_guard_clause_void(int x) {
+        if (x == 3) {
             ExampleConditionals.y = 4;
             // imagine lots more lines of code here including if statements
             ExampleConditionals.z = x;
-            return 4 * x + y;
         }
-        return 0;
     }
 
-    static int remove_guard_clause_multi_return(int x) {
+
+    static int introduce_guard_clause_multi_return(int x) {
         if (x == 3) {
             return 0;
         }
         ExampleConditionals.y = 4;
         // imagine lots more lines of code here including if statements
         ExampleConditionals.z = x;
-
         return 4 * x + y;
     }
-    static int introduce_guard_clause_single_return(int x) {
-        int result = 0;
+
+    static int remove_guard_clause_multi_return(int x) {
         if (x != 3) {
             ExampleConditionals.y = 4;
             // imagine lots more lines of code here including if statements
             ExampleConditionals.z = x;
-            result = 4*x + y;
+
+            return 4 * x + y;
         }
+        return 0;
+    }
+
+    static int introduce_guard_clause_single_return(int x) {
+        int result = 0;
+        if (x == 3) {
+            return result;
+        }
+        ExampleConditionals.y = 4;
+        // imagine lots more lines of code here including if statements
+        ExampleConditionals.z = x;
+        result = 4 * x + y;
         return result;
     }
 
@@ -173,7 +176,7 @@ public class ExampleConditionals {
     }
 
 
-    public static String liftUpSimple(boolean a, boolean b) {
+    public static String liftUpB(boolean a, boolean b) {
         if (a) {
             if (b) {
                 return aTrueBTrue();
@@ -189,24 +192,24 @@ public class ExampleConditionals {
         }
     }
 
-    public static String aFalseBFalse() {
-        return "AFalseBFalse";
+    public static String liftUpA(boolean a, boolean b) {
+        if (b) {
+            if (a) {
+                return aTrueBTrue();
+            } else {
+                return aFalseBTrue();
+            }
+        } else {
+            if (a) {
+                return aTrueBFalse();
+            } else {
+                return aFalseBFalse();
+            }
+        }
     }
 
-    public static String aFalseBTrue() {
-        return "AFalseBTrue";
-    }
 
-    public static String aTrueBFalse() {
-        return "ATrueBFalse";
-    }
-
-    public static String aTrueBTrue() {
-        return "ATrueBTrue";
-    }
-
-
-    static int normalize(String s1, String s2) {
+    static int liftUpWorld(String s1, String s2) {
         if (!s1.equals("hello")) {
             if (!s2.equals("world")) {
                 if (!s1.equals("foo")) {
@@ -225,6 +228,49 @@ public class ExampleConditionals {
             return 5;
         }
         return 0;
+    }
+
+    static int liftUpHello(String s1, String s2) {
+        if (s2.equals("world")) {
+            if (!s1.equals("hello")) {
+                if (!s1.equals("foo")) {
+                    return 2;
+                }
+            } else {
+                return 5;
+            }
+            return 0;
+        } else {
+            if (!s1.equals("hello")) {
+                if (!s1.equals("foo")) {
+                    return 6;
+                }
+                return 1;
+            } else {
+                if (s2.equals("bar")) {
+                    return 3;
+                } else {
+                    return 4;
+                }
+            }
+        }
+    }
+
+
+    private static String aFalseBFalse() {
+        return "AFalseBFalse";
+    }
+
+    private static String aFalseBTrue() {
+        return "AFalseBTrue";
+    }
+
+    private static String aTrueBFalse() {
+        return "ATrueBFalse";
+    }
+
+    private static String aTrueBTrue() {
+        return "ATrueBTrue";
     }
 
 }

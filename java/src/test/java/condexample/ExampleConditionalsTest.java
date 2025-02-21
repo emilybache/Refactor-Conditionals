@@ -216,22 +216,26 @@ class ExampleConditionalsTest {
 
     @Test
     public void testA_True_B_True() {
-        assertEquals("ATrueBTrue", ExampleConditionals.liftUpSimple(true, true));
+        assertEquals("ATrueBTrue", ExampleConditionals.liftUpB(true, true));
+        assertEquals("ATrueBTrue", ExampleConditionals.liftUpA(true, true));
     }
 
     @Test
     public void testA_True_B_False() {
-        assertEquals("ATrueBFalse", ExampleConditionals.liftUpSimple(true, false));
+        assertEquals("ATrueBFalse", ExampleConditionals.liftUpB(true, false));
+        assertEquals("ATrueBFalse", ExampleConditionals.liftUpA(true, false));
     }
 
     @Test
     public void testA_False_B_True() {
-        assertEquals("AFalseBTrue", ExampleConditionals.liftUpSimple(false, true));
+        assertEquals("AFalseBTrue", ExampleConditionals.liftUpB(false, true));
+        assertEquals("AFalseBTrue", ExampleConditionals.liftUpA(false, true));
     }
 
     @Test
     public void testA_False_B_False() {
-        assertEquals("AFalseBFalse", ExampleConditionals.liftUpSimple(false, false));
+        assertEquals("AFalseBFalse", ExampleConditionals.liftUpB(false, false));
+        assertEquals("AFalseBFalse", ExampleConditionals.liftUpA(false, false));
     }
 
 
@@ -245,8 +249,9 @@ class ExampleConditionalsTest {
             "hello, world, 5",
             "bar,   foo,   6",
     })
-    void normalize(String s1, String s2, int expected) {
-        assertEquals(expected, ExampleConditionals.normalize(s1, s2));
+    void liftUpWorld(String s1, String s2, int expected) {
+        assertEquals(expected, ExampleConditionals.liftUpWorld(s1, s2));
+        assertEquals(expected, ExampleConditionals.liftUpHello(s1, s2));
     }
 
 }
